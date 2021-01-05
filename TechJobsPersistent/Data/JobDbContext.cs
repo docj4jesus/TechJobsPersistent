@@ -1,4 +1,5 @@
-﻿using TechJobsPersistent.Models;
+﻿using System;
+using TechJobsPersistent.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace TechJobsPersistent.Data

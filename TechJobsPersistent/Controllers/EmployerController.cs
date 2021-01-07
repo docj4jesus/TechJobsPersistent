@@ -38,34 +38,24 @@ namespace TechJobsPersistent.Controllers
         }
 
         [HttpPost]
-        public IActionResult ProcessAddEmployerForm(AddEmployerViewModel viewModel)
+        public IActionResult ProcessAddEmployerForm(AddEmployerViewModel addEmployerViewModel)
         {
             if (ModelState.IsValid)
             {
-
-                string name = viewModel.Name;
-                string location = viewModel.Location;
-
-                List<Employer> existingItems = context.Employers
-                    .Where(js => js.Name == name)
-                    .Where(js => js.Location == location)
-                    .ToList();
-
-                if (existingItems.Count == 0)
+                Employer newEmployer = new Employer
                 {
-                    Employer employer = new Employer
-                    {
-                        Name = name,
-                        Location = location
-                    };
-                    context.Employers.Add(employer);
-                    context.SaveChanges();
-                }
+                    Name = addEmployerViewModel.Name,
+                    Location = addEmployerViewModel.Location
+                };
 
-                return Redirect("/Home/Detail/" + name);
+                context.Employers.Add(newEmployer);
+                context.SaveChanges();
+            
+
+                return Redirect("/Employer");
             }
 
-            return View(viewModel);
+            return View(addEmployerViewModel);
         }
         
         public IActionResult About(int id)

@@ -1,12 +1,18 @@
-﻿@model List<TechJobsPersistent.ViewModels.AddJobViewModel>
+﻿@model TechJobsPersistent.ViewModels.AddJobViewModel
 
 <h1>Add a Job</h1>
 
 <form asp-controller="Home" asp-action="ProcessAddJobForm" method="post">
     <div class="form-group">
-        <label>Name</label>
-        <input class="form-control" />
-        <span></span>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmployerId">Employer Id</label>
+        <select asp-for="EmployerId" asp-items="Model.Employers"></select>
+        <span asp-validation-for="EmployerId"></span>
+        <p><a asp-controller="Employer" asp-action="Add">Add Employer</a></p>
     </div>
 
     <input type="submit" value="Add Job" />

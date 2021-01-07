@@ -49,6 +49,7 @@ namespace TechJobsPersistent.Controllers
                 Job newJob = new Job
                 {
                     Name = addJobViewModel.Name,
+                    Employer = context.Employers.Find(addJobViewModel.EmployerId),
                     EmployerId = addJobViewModel.EmployerId
                 };
 
@@ -80,7 +81,7 @@ namespace TechJobsPersistent.Controllers
                 context.Jobs.Add(newJob);
                 context.SaveChanges();
 
-                return Redirect("/Job");
+                return Redirect("/Home");
             }
 
                 return View(addJobViewModel);
